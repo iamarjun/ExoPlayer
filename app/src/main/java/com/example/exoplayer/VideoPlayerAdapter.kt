@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import com.bumptech.glide.RequestManager
 import com.example.exoplayer.model.Media
 import kotlinx.android.synthetic.main.layout_video_list_item.view.*
-import com.example.exoplayer.VideoPlayerAdapter.VideoPlayerViewHolder
-
 
 
 class VideoPlayerAdapter(private val mediaList: List<Media>, private val requestManager: RequestManager) :

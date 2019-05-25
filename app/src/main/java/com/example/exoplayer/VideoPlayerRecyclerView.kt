@@ -53,11 +53,7 @@ class VideoPlayerRecyclerView : RecyclerView {
     // controlling playback state
     private var volumeState: VolumeState? = null
 
-    private val videoViewClickListener = object : View.OnClickListener {
-        override fun onClick(v: View) {
-            toggleVolume()
-        }
-    }
+    private val videoViewClickListener = OnClickListener { toggleVolume() }
 
     private enum class VolumeState {
         ON, OFF
@@ -102,7 +98,7 @@ class VideoPlayerRecyclerView : RecyclerView {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     Log.d(TAG, "onScrollStateChanged: called.")
                     if (thumbnail != null) { // show the old thumbnail
-                        thumbnail!!.setVisibility(View.VISIBLE)
+                        thumbnail!!.visibility = View.VISIBLE
                     }
 
                     // There's a special case when the end of the list has been reached.
@@ -126,7 +122,7 @@ class VideoPlayerRecyclerView : RecyclerView {
             }
 
             override fun onChildViewDetachedFromWindow(view: View) {
-                if (viewHolderParent != null && viewHolderParent!!.equals(view)) {
+                if (viewHolderParent != null && viewHolderParent!! == view) {
                     resetVideoView()
                 }
 
@@ -134,6 +130,7 @@ class VideoPlayerRecyclerView : RecyclerView {
         })
 
         videoPlayer!!.addListener(object : Player.EventListener {
+
             override fun onTimelineChanged(timeline: Timeline, @Nullable manifest: Any?, reason: Int) {
 
             }
